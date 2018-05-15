@@ -70,4 +70,17 @@ Ensure that you can see svcat and it can access your Kubernetes deployment:
 +------+-------------+------+
 ```
 
+Download the Workshop Source Code
+Repo `guestbook` has the application that we'll be deploying. 
+While we're not going to build it we will use the deployment configuration files from that repo. 
+Guestbook application has two versions v1 and v2 which we will use to demonstrate some rollout 
+functionality later. All the configuration files we use are under the directory guestbook/v1.
+
+Repo `svccat` contains the step by step instructions to run the workshop.
+
+```console
+$ git clone https://github.com/IBM/guestbook.git
+$ git clone https://github.com/IBM/svccat.git
+```
+
 After that, you should be good to go!
