@@ -23,12 +23,25 @@ for creating additional infrastructure inside your cluster.
 
 Service Catalog is installed via a Helm chart, a manifest that describes what to install and how to run it.
 
+XXXXXX How to start a kube cluster on IBM cloud with RBAC enabled?
+
 1. First, add the Service Catalog repo to your helm by running `helm repo add svc-cat https://svc-catalog-charts.storage.googleapis.com`
-It should show up when you run `helm search service-catalog`.
+You should see the repository listed in the output of `helm search service-catalog`.
 2. Install Service Catalog by running 
 `helm install svc-cat/catalog \
     --name catalog --namespace catalog`
-It should show up when you run `kubectl get pods --all-namespaces`
+You should be able to see the helm tiller and service catalog pods like so:
+```
+> kubectl get pods --all-namespaces
+NAMESPACE     NAME                                                  READY     STATUS    RESTARTS   AGE
+catalog       catalog-catalog-apiserver-6bc6bb895d-f2xhp            2/2       Running   0          8m
+catalog       catalog-catalog-controller-manager-5c7475f7d4-fwlfg   1/1       Running   1          8m
+kube-system   kube-addon-manager-minikube                           1/1       Running   0          8m
+kube-system   kube-dns-54cccfbdf8-vpvmn                             3/3       Running   0          8m
+kube-system   kubernetes-dashboard-77d8b98585-sw5gc                 1/1       Running   0          8m
+kube-system   storage-provisioner                                   1/1       Running   0          8m
+kube-system   tiller-deploy-865dd6c794-88njn                        1/1       Running   0          9m
+```
 
 # Install svcat
 
@@ -49,3 +62,12 @@ Move the file somewhere on your PATH:
 * (Linux/OS X) `mv svcat /usr/local/bin/`
 * (Windows) `mkdir -f ~\bin
 $env:PATH += ";${pwd}\bin"`
+
+Ensure that you can see svcat and it can access your Kubernetes deployment:
+```
+>svcat get classes
+  NAME   DESCRIPTION   UUID  
++------+-------------+------+
+```
+
+After that, you should be good to go!
