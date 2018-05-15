@@ -33,20 +33,20 @@ OSBAPI defines five object types - Brokers, Services, Plans, Instances, and Bind
 # Open Service Broker Endpoints
 The [OSBAPI specification](https://github.com/openservicebrokerapi/servicebroker) details the endpoints that must be implemented by a broker.
 * GET /v2/catalog
-Returns the catalog of services and plans offered by the broker. The platform is expected to maintain this list locally, but the catalog may
+  - Returns the catalog of services and plans offered by the broker. The platform is expected to maintain this list locally, but the catalog may
 be refetched to get updates.
 * PUT /v2/service_instances/:instance_id
-Provision an instance of some service. Instance ID is some unique identifier that the platform provides. As brokers are intended to be stateless,
+  - Provision an instance of some service. Instance ID is some unique identifier that the platform provides. As brokers are intended to be stateless,
 the platform must maintain a record of the instance IDs for provisioned services.
 * PUT /v2/service_instances/:instance_id/service_bindings/:binding_id
-Create a binding for some service instance. Binding ID is some unique identifier that the platform provides and must keep track of internally.
+  - Create a binding for some service instance. Binding ID is some unique identifier that the platform provides and must keep track of internally.
 The response to this call contains a credentials JSON that contains the information on how to access the service instance that must be stored locally
 by the platform.
 * DELETE /v2/service_instances/:instance_id/service_bindings/:binding_id
-Delete the binding associated with binding ID. Depending on how the broker is implemented, this might cause subsequent requests to the instance
+  - Delete the binding associated with binding ID. Depending on how the broker is implemented, this might cause subsequent requests to the instance
 using the credentials contained in the binding to fail.
 * DELETE /v2/service_instances/:instance_id
-Unprovision the service instance associated with instance ID.
+  - Unprovision the service instance associated with instance ID.
 
 # Open Service Broker Lifecycle
 
